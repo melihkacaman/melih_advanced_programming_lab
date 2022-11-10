@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="en-US">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width">
+  <link rel="icon" href="https://blm-fsmvu.github.io/305/images/icon192.png">
+  <title>Melih KAçaman </title>
+
+  <style>
+    /* CSS comment */
+    body {
+      max-width: 440px;
+    }
+
+    #url {
+      width: 190px;
+    }
+
+    span,
+    #url {
+      color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HTML comment: Modify all items marked xxx -->
+
+  <h2 id="title" title="Put your name here">xxx</h2>
+  <p title="navigator.platform">
+    Adım: <span id="plat">xxx</span>
+  </p>
+  <p title="Battery level (integer)">
+    Battery level: <span id="lev">xxx</span>
+  </p>
+  <p>
+    Durum: <span id="durum"></span>
+  </p>
+  <p>
+    Online mısın?: <span id="oonline"></span>
+  </p>
+
+  <p>
+    Keyboard: <span id="keyboardd"></span>
+  </p>
+
+
+  <hr>
+  <b>Sample code</b>
+  <pre
+    id="sample">function init() {<br>//complete the code below<br>    plat.innerText = 'xxx';<br>    navigator.geolocation<br>      .getCurrentPosition(p =&gt;<br>        loc.innerText = 'xxx'<br>      );<br>    navigator.getBattery().then(b =&gt;<br>        lev.innerText = 'xxx'<br>      );<br>    check()<br>}<br>function check() {<br>//complete the code below<br>    fetch(url.value).then(r =&gt; <br>      resp.innerText = r.ok? 'OK' : 'xxx'<br>    ).catch(e =&gt; <br>      resp.innerText = e<br>    )<br>}</pre>
+
+  <hr>
+
+  <script>
+    "use strict";
+    function init() {
+      //complete the code below
+      plat.innerText = 'Melih Kaçaman';
+      navigator.getBattery().then(b => {
+        document.querySelector("#lev").textContent = b.level * 100;
+        b.onlevelchange = () => {
+          document.querySelector("#lev").textContent = b.level * 100;
+          if (b.charging) {
+            document.querySelector("#durum").textContent = `time: ${b.chargingTime / 60}`;
+          } else {
+            document.querySelector("#stateBattery").textContent = 
+            `Discharging time: ${b.dischargingTime / 60}`;
+          }
+        }
+        b.onchargingchange = () => {
+          document.querySelector("#durum").textContent = b.chargingTime;
+        };
+      });  
+      window.onoffline = (event) => {
+        document.querySelector("#oonline").textContent = "Sen şuanda Online'sin"
+      };
+      window.ononline = (event) => {
+        document.querySelector("#oonline").textContent = "Sen şuanda Oflinesin"
+      };
+      document.body.onkeydown = (e) => {  
+        document.querySelector("#keyboardd").textContent = e.key;
+      }
+
+      check();
+    }
+    function check() {
+      window.onoffline(); 
+      window.ononline();
+    }
+    title.innerText = document.title;
+    sample.innerText = init + '\n' + check;
+    init();
+  </script>
+
+
+
+</body>
+
+</html>
