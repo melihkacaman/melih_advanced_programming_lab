@@ -10,24 +10,21 @@
         #canvas {
             width: 600px;
             height: 600px; 
-            border: 5px solid black; 
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        #player {       
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 5%;
+            left: 1%;
         }
     </style>
 </head>
 <body>
-    <div id="canvas">
-        <img  id="player"/>
+    <input type="button" id="start" value="start"/>
+    <input type="button" id="stop" value="stop"/>
+    <input type="button" id="pause" value="pause"/> 
+    <input type="button" id="next" value="next"/>
+    <input type="button" id="prev" value="prev"/>
+
+    <canvas id="canvas">
+        
     </canvas>
 
     <script src="HW3.js"></script>
