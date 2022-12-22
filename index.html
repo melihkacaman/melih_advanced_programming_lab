@@ -1,53 +1,173 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en-US">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BLM305 - Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <link href="https://maeyler.github.io/JS/sss/inspector.css" rel="stylesheet" media="all">
+  <script src="https://maeyler.github.io/JS/sss/inspector.js"></script>
+  <link rel="icon" href="../images/icon192.png">
+  <title>Image Inspector </title>
+
+  <style>
+    body {
+      margin: 0;
+    }
+
+    p {
+      margin: 1em;
+      font: 14px arial, sans-serif;
+    }
+
+    div {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    #color {
+      background: #bbb;
+      text-align: center;
+      padding: 16px;
+      margin: 0;
+      margin-bottom: 10px;
+      min-width: 260px;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <hr/>
-        <h2>Hello, guest.</h2>
-        <h3>I am Melih :)</h3>
-        <h4>BLM305 Advanced Programming & Tech. - <a href="https://github.com/melihkacaman/melih_advanced_programming_lab">GitHub Page</a></h4>
-        <hr />
-        <div class="row">
-            <ol class="list-group list-group-numbered">
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Class Works</div>
-                        - <a href="https://melihkacaman.github.io/melih_advanced_programming_lab/CW_0.html">CW0 - Browser tools</a> <br/>
-                        - <a href="https://melihkacaman.github.io/melih_advanced_programming_lab/iban.html">CW1 - IBAN Verification</a><br/>
-                        - <a href="https://melihkacaman.github.io/melih_advanced_programming_lab/List%20of%20Objects.html">CW2 - Objects and Arrays</a><br/>
-                        - <a>CW3 - Text to Objects</a><br/>
-                        - <a href="https://melihkacaman.github.io/melih_advanced_programming_lab/CW4.html">CW4 - Fetching Remote Files</a><br/>
-                        - <a href="https://melihkacaman.github.io/melih_advanced_programming_lab/CW5.html">CW5 - Event listeners</a><br/>
-                        - <a href="https://melihkacaman.github.io/melih_advanced_programming_lab/cw6.html">CW6 - Git Hub</a><br/>
-                        - <a href="https://melihkacaman.github.io/melih_advanced_programming_lab/Open Weather.html">CW7 - Open Weather API</a><br/>
-                        - <a href="https://melihkacaman.github.io/melih_advanced_programming_lab/CW8.html">CW8 - Open Maps API</a><br/>
-                        - <a href="https://melihkacaman.github.io/melih_advanced_programming_lab/CW9.html">CW9 - Image Inspector</a><br/>
-                    </div>
-                    <span class="badge bg-primary rounded-pill">9</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Home Works</div>
-                        - <a href="https://melihkacaman.github.io/melih_advanced_programming_lab/HW1.html">HW#1 - Array Methods</a><br/> 
-                        - <a href="https://melihkacaman.github.io/melih_advanced_programming_lab/HW3.html">HW#3 - Fetch & Animations</a>   
-                    </div>
-                    <span class="badge bg-primary rounded-pill">2</span>
-                </li>
-            </ol>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
+  <div>
+    <canvas id="canvas"></canvas>
+    <p id=color>{x,y} {R,G,B}</p>
+  </div>
+  <div>
+    <div id=sss></div>
+    <p>Use <code>loadImage(x)</code> where x is a URL or <br>
+      number n=1: villa, n=2: field, n=3: flower
+    <p>
+      Ref: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Pixel_manipulation_with_canvas"
+        target=NewTab>Pixel manipulation</a>
+  </div>
+
+  <script>
+    "use strict";
+    const cx = canvas.getContext('2d');
+    const img = new Image();
+    img.style.display = 'none';
+    img.crossOrigin = 'anonymous';
+    img.onload = start;
+
+    function start() {
+      console.log(img.src, "loaded")
+      canvas.width = img.width
+      canvas.height = img.height
+      cx.drawImage(img, 0, 0)
+      MENU.W = canvas.width
+      MENU.H = canvas.height
+      display(MENU)
+    }
+    function pick(evt) {
+      let x = evt.layerX, y = evt.layerY;
+      let rgb, avg;
+      try {
+        let pixel = cx.getImageData(x, y, 1, 1);
+        let data = pixel.data;
+        rgb = 'rgb(' + data[0] + ', ' + data[1] + ', ' + data[2] + ')';
+        avg = (data[0] + data[1] + data[2]) / 3;
+      } catch {
+        rgb = 'gray'; avg = 127;
+      }
+      color.style.background = rgb;
+      color.style.color = avg < 127 ? "white" : "black";
+      // if (rgb == 'gray') rgb = '';
+      color.innerText = '{x:' + x + ', y:' + y + '}  ' + rgb;
+    }
+
+    class Graph extends Menu {
+      constructor() {
+        super()
+        this.canvas = canvas
+        this.context = cx
+        this.image = img
+      }
+      loadImage(url) {
+        switch (Number(url)) {
+          case 1: url = "./images/fsmbb.jpg"
+            break;
+          case 2: url = "./images/cilek.jpg"
+            break;
+          case 3: url = "./images/cicek.jpg"
+            break;
+          default: //do nothing
+        }
+        img.src = url
+      }
+      invert() {
+        let id = this.context.getImageData(0, 0, this.W, this.H);
+        let data = id.data;
+        for (let i = 0; i < data.length; i += 4) {
+          data[i] = 255 - data[i];   // red
+          data[i + 1] = 255 - data[i + 1]; // green
+          data[i + 2] = 255 - data[i + 2]; // blue
+        }
+        this.context.putImageData(id, 0, 0);
+      }
+      flipHorizontal() {
+        let id = this.context.getImageData(0, 0, this.W, this.H);
+        
+        for (let i = 0; i < id.height; i++) {
+          for (let j = 0; j < id.width / 2; j++) {
+            let index = ((i * id.width) + j) * 4;
+            let yerDegis = (((i + 1) * id.width) - (j + 1)) * 4;
+            for (let byte_index = 0; byte_index < 4; byte_index++) {
+              let yerDeg = id.data[index + byte_index];
+              id.data[index + byte_index] = id.data[yerDegis + byte_index];
+              id.data[yerDegis + byte_index] = yerDeg;
+            }
+          }
+        }
+        this.context.putImageData(id, 0, 0, 0, 0, id.width, id.height);
+      }
+      grayscale() {
+        let id = this.context.getImageData(0, 0, this.W, this.H);
+        let data = id.data;
+        for (let i = 0; i < data.length; i += 4) {
+          let avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+          data[i] = avg; // red
+          data[i + 1] = avg; // green
+          data[i + 2] = avg; // blue
+        }
+        this.context.putImageData(id, 0, 0);
+      }
+      red_green() {
+        let id = this.context.getImageData(0, 0, this.W, this.H);
+        let data = id.data;
+        for (let i = 0; i < data.length; i += 4) {
+          let avg = (data[i] + data[i + 1]) / 2;
+          data[i] = avg; // red
+          data[i + 1] = avg; // green
+        }
+        this.context.putImageData(id, 0, 0);
+      }
+      getPixelAt(x, y) {
+        return this.context.getImageData(x, y, 1, 1).data;
+      }
+    }
+
+    function init() {
+      MENU = new Graph(); //global
+      display(MENU); display(cx); display(img);
+      MENU.loadImage(1)
+    }
+    canvas.addEventListener('mousemove', pick);
+    try {
+      inspect(sss, init); //makes Inspector table
+      inp.value = "start()";
+    } catch (e) {
+      reportError(e);
+    }
+  </script>
+
 </body>
 
 </html>
