@@ -1,0 +1,197 @@
+* {
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Fira sans", sans-serif;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: #ebe6dc;
+}
+
+header {
+	padding: 2rem 1rem;
+	max-width: 800px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+header h1{ 
+	font-size: 2.5rem;
+	font-weight: 300;
+	margin-bottom: 1rem;
+}
+
+#new-task-form {
+	display: flex;;
+}
+
+
+#new-task-input {
+	flex: 1 1 0%;
+	padding: 1rem;
+	border-radius: 1rem;
+	margin-right: 1rem;
+	font-size: 1.25rem;
+	background-color: aliceblue;
+}
+
+
+#new-task-submit {
+	font-size: 1.25rem;
+	font-weight: 700;
+	background-color: #88B169;
+	cursor: pointer;
+	transition: 0.4s;
+}
+
+
+main {
+	flex: 1 1 0%;
+	max-width: 800px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.task-list {
+	padding: 1rem;
+}
+
+.task-list h2 {
+	font-size: 1.5rem;
+	font-weight: 300;
+	margin-bottom: 1rem;
+}
+
+#tasks .task {
+	display: flex;
+	justify-content: space-between;
+	padding: 1rem;
+	border-radius: 1rem;
+	margin-bottom: 1rem;
+	background-color: aliceblue;
+}
+
+#tasks .task .content {
+	flex: 1 1 0%; 
+}
+
+.task .content {
+	flex: 1 1 0%;
+}
+
+.task .content .text {
+	font-size: 1.125rem;
+	width: 100%;
+	display: block;
+	transition: 0.4s;
+}
+
+
+.task .actions {
+	display: flex;
+	margin: 0 -0.5rem;
+}
+
+.task .actions button {
+	cursor: pointer;
+	margin: 0 0.5rem;
+	font-size: 1.125rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	transition: 0.4s;
+}
+
+.task .actions button:hover {
+	opacity: 0.8;
+}
+
+.task .actions button:active {
+	opacity: 0.6;
+}
+
+
+#pomodoro-title{
+    text-align: center;
+}
+
+#container {
+    height: 200px;
+    min-width: 370px;
+    background-color: #F5E4C3;
+    margin: 0 auto;
+    border: 5px solid #88B169;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.label {
+    align-self: center;
+    justify-self: center;
+
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#work {
+    grid-area: 1 / 2 / 1 / 2;
+}
+#break {
+    grid-area: 1 / 4 / 1 / 4;
+}
+#cycles {
+    grid-area: 1 / 3 / 1 / 3;
+}
+
+.timer {
+    display: flex;
+    align-self: center;
+    justify-self: center;
+
+    font-size: 30px;
+    font-weight: bold;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+#counter {
+    grid-area: 2 / 3 / 2 / 3;
+    color: red;
+}
+
+#work-timer {
+    grid-area: 2 / 2 / 2 / 2;
+}
+
+#break-timer {
+    grid-area: 2 / 4 / 2 / 4;
+}
+
+.btn {
+    align-self: center;
+    justify-self: center;
+
+    width: 100px;
+    height: 30px;
+
+    font-size: 20px;
+}
+
+#start {
+    grid-area: 3 / 2 / 3 / 2;
+}
+
+#reset {
+    grid-area: 3 / 3 / 3 / 3;
+}
+
+#stop {
+    grid-area: 3 / 4 / 3 / 4;
+}

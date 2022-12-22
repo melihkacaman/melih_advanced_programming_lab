@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro ve Todo List </title>
+    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Pomodoro and ToDoList app</h1>
+        <form id="new-task-form">
+            <input type="text" id="new-task-input" placeholder="Whad do you want to do today?" />
+            <input type="submit" id="new-task-submit" value="Add Task" />
+        </form>
+    </header>
+
+    <main>
+        <section class="task-list">
+            <h2>Tasks</h2>
+            <div id="tasks">
+                <!-- <div class="task">
+                    <div class="content">
+                        <input type="text" class="text" value="My shiny task" readonly/>
+                    </div>
+                    <div class="actions">
+                        <button class="edit">Edit</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+        <section>
+            <h1 id="pomodoro-title">Pomodoro</h1>
+            <div id="container">
+                <p id="work" class="label">Work:</p>
+                <p id="break" class="label">Break:</p>
+                <p id="cycles" class="label">Cycles:</p>
+                
+                <div id="work-timer" class="timer">
+                    <p id="w_minutes">25</p>
+                    <p class="semicolon">:</p>
+                    <p id="w_seconds">00</p>
+                </div>
+                <p id="counter" class="timer">0</p>
+                <div id="break-timer" class="timer">
+                    <p id="b_minutes">05</p>
+                    <p class="semicolon">:</p>
+                    <p id="b_seconds">00</p>
+                </div>
+                <button id="start" class="btn">Start</button>
+                <button id="stop" class="btn">Pause</button>
+                <button id="reset" class="btn">Reset</button>
+            </div>
+        </section>
+    </main>
+
+
+    <script>
+        if("serviceWorker" in navigator){
+            navigator.serviceWorker.register("./service-worker.js") // TODO: YANLIS OLABILIR. 
+        }
+    </script>
+    <script src="./main.js"></script>
+</body>
+
+</html>
