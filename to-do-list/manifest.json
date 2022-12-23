@@ -2,6 +2,7 @@
     "name":"pomodoro and todo list", 
     "short_name":"pomodoro&ToDoList",
     "start_url": "/index.html",
+    "scope":"./",
     "icons": [
         {
           "src": "windows11/SmallTile.scale-100.png",
