@@ -1,7 +1,7 @@
 {
     "name":"pomodoro and todo list", 
     "short_name":"pomodoro&ToDoList",
-    "start_url": "/to-do-list/?home=true",
+    "start_url": "/to-do-list/index.html",
     "icons": [
         {
           "src": "windows11/SmallTile.scale-100.png",
