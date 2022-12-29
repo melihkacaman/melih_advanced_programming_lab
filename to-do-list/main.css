@@ -44,6 +44,7 @@ header h1{
 	background-color: #88B169;
 	cursor: pointer;
 	transition: 0.4s;
+	color: white;
 }
 
 
@@ -60,7 +61,7 @@ main {
 
 .task-list h2 {
 	font-size: 1.5rem;
-	font-weight: 300;
+	font-weight: bold;
 	margin-bottom: 1rem;
 }
 
@@ -113,7 +114,7 @@ main {
 
 
 #pomodoro-title{
-    text-align: center;
+    padding-left: 1rem;
 }
 
 #container {
@@ -176,11 +177,11 @@ p {
 .btn {
     align-self: center;
     justify-self: center;
-
+	background-color: #88B169;
     width: 100px;
     height: 30px;
-
     font-size: 20px;
+	color: white;
 }
 
 #start {
